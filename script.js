@@ -111,7 +111,7 @@ function b() {
     const termo = [ Number(a[0].value), Number(a[1].value) ]
     //
     const pos = Number(document.getElementById('n').value)
-    const r = Number(document.getElementById('r').value)
+    let r = Number(document.getElementById('r').value)
 
 
     // Verificando os inputs
@@ -165,11 +165,7 @@ function b() {
 
     } else if (regressivo) {
         //
-        let dnv = termo[0] - pos
 
-        for (dnv, i = 0; dnv > 0; dnv--, i++) {
-            pa.push( pa[i] + r )
-        }
         
         // Pegando a distância, pra gerar pra trás
         if (termo[1] > 1) {
@@ -178,6 +174,15 @@ function b() {
             
             for (dnv2; dnv2 > 0; dnv2--, num -= r) {
                 pa.unshift(num - r)
+                console.log(pa)
+            }
+
+        } else {
+
+            let dnv = termo[0] - pos
+
+            for (dnv, i = 0; dnv > 0; dnv--, i++) {
+                pa.push( pa[i] + r )
             }
         }
         //pa.reverse()
@@ -185,8 +190,15 @@ function b() {
 
 
     // Contas que serão exibidas na div de resultados
-    let calc1 = `A${pos} = ${pa[0]} + (${pos}-1) . ${r} <br>`
-    let calc2 = `A${pos} = ${pa[0]} + ${pos - 1}.${r} <br>`
+    let show_r = r
+    if (r < 0) {
+        show_r = `(${r})`
+    } else {
+        show_r = ` . ${r}`
+    }
+
+    let calc1 = `A${pos} = ${pa[0]} + (${pos}-1)${show_r} <br>`
+    let calc2 = `A${pos} = ${pa[0]} + ${pos - 1}${show_r} <br>`
     let calc3 = `A${pos} = ${pa[0]} + ${ (pos-1) * r } <br>`
     let calc4 = `A${pos} = ${ pa[0] + (pos-1) * r }`
 
