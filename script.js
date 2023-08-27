@@ -206,9 +206,9 @@ function b() {
     if (termo[0] == 1) {
         calc2 = calc2.replace('0 + ', '')
         calc3 = calc3.replace('0 + ', '')
-        calc3 = calc3.replace('<br>', '')
 
         if (pa[0] == 0) {
+            calc3 = calc3.replace('<br>', '')
             calc4 = calc4.replace(calc4, '')
         }
     }
